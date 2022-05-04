@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                                  <Component id="labelSlope" min="-2" pref="171" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelGoal" min="-2" pref="168" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="labelStart" min="-2" pref="179" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="fieldStartX" alignment="1" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="fieldGoalX" alignment="1" min="-2" pref="77" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelSepGoal" alignment="0" min="-2" pref="13" max="-2" attributes="0"/>
+                                  <Component id="labelSepStart" alignment="0" min="-2" pref="15" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="fieldGoalY" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="fieldStartY" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="fieldSlope" min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="labelSlopeUnit" min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              <Component id="fieldSlopeP" min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="labelSlopePUnit" min="-2" pref="21" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelStart1" min="-2" pref="77" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fieldRobotIP" min="-2" pref="127" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonConnect" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="labelForward" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="fieldForward" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="labelForwardUnit" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="buttonForward" min="-2" pref="137" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="labelRotate" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="fieldRotate" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="labelRotateUnit" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="buttonRotate" min="-2" pref="137" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="buttonSearch" min="-2" pref="166" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="buttonExecute" min="-2" pref="166" max="-2" attributes="0"/>
+                                          <Component id="buttonInfo" min="-2" pref="166" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelStart1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="fieldRobotIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonConnect" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelStart" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="labelSepStart" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="fieldStartX" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldStartY" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelGoal" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="labelSepGoal" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="fieldGoalX" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldGoalY" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelSlope" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="labelSlopeUnit" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="fieldSlope" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldSlopeP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSlopePUnit" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="buttonInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonExecute" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="buttonSearch" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelRotate" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="fieldRotate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelRotateUnit" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="buttonRotate" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelForward" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="fieldForward" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelForwardUnit" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="buttonForward" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="labelStart">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start position:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Start position (x , y)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSepStart">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value=","/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelGoal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Goal position:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Goal position (x , y)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSepGoal">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value=","/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSlope">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Maximum slope:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Maximum terrain slope allowed. Use -1 to disable slope consideration during search."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSlopeUnit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xba;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonSearch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SEARCH ROUTE"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSearchActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldStartX">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0" subtype="-1" type="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldGoalX">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0" subtype="-1" type="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldStartY">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0" subtype="-1" type="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldGoalY">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0" subtype="-1" type="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldSlope">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.000" subtype="-1" type="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-1"/>
+        <Property name="toolTipText" type="java.lang.String" value="Use a negative value to invalidate constraint"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldSlopeFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldSlopeP">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.000" subtype="-1" type="0"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Use a negative value to invalidate constraint"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldSlopePFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSlopePUnit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="%"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonExecute">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EXECUTE ROUTE"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExecuteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonRotate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rotate"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRotateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelRotate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rotate:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Maximum terrain slope allowed. Use -1 to disable slope consideration during search."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldRotate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.000" subtype="-1" type="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldRotateFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelRotateUnit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xba;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelForward">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Move forward:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Maximum terrain slope allowed. Use -1 to disable slope consideration during search."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldForward">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.000" subtype="-1" type="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldForwardFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelForwardUnit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="m"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonForward">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Move forward"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonForwardActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonInfo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ROUTE INFO"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonInfoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelStart1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Robot IP:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Start position (x , y)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldRobotIP">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="127.0.0.1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldRobotIPFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="buttonConnect">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CONNECT"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonConnectActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
