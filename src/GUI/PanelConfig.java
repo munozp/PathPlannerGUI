@@ -1,6 +1,7 @@
 package GUI;
 
 import PathPlanning.*;
+import Control.ConnectionThread;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.text.ParseException;
@@ -33,6 +34,37 @@ public class PanelConfig extends javax.swing.JPanel {
         fieldSlope.setText(String.valueOf(map.ZM));
         commitFloatField(fieldSlope);
         fieldRobotIPFocusLost(null);
+    }
+    
+    /**
+     * Handles a message received through the robot connection
+     * @param message the received message
+     */
+    public void handleReceivedData(String message) {
+        if(message == null || message.isEmpty())
+            return;
+        // TODO PARSE MESSAGE AND PERFORM OPERATIONS
+        System.out.println(message);
+        // Example of updating robot position with a message "POS,x,y" 
+        try{
+            java.util.StringTokenizer strtok = new java.util.StringTokenizer(message, ",");
+            strtok.nextToken();
+            int x = Integer.parseInt(strtok.nextToken());
+            int y = Integer.parseInt(strtok.nextToken());
+            updateRobotPosition(x,y);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    /**
+     * Set the new robot position
+     * @param x X coordinate
+     * @param y Y coordinate
+     */
+    public void updateRobotPosition(int x, int y)
+    {
+        parent.lienzo.updateRobotPosition(x, y); 
     }
     
     /**
@@ -235,10 +267,10 @@ public class PanelConfig extends javax.swing.JPanel {
             }
         });
 
-        labelStart1.setText("Robot IP:");
+        labelStart1.setText("Robot IP:port");
         labelStart1.setToolTipText("Start position (x , y).");
 
-        fieldRobotIP.setText("127.0.0.1");
+        fieldRobotIP.setText("127.0.0.1:4444");
         fieldRobotIP.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 fieldRobotIPFocusLost(evt);
@@ -297,12 +329,6 @@ public class PanelConfig extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelStart1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldRobotIP, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonConnect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(labelForward, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +352,13 @@ public class PanelConfig extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(buttonExecute, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(buttonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelStart1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldRobotIP, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonConnect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -450,11 +482,15 @@ public class PanelConfig extends javax.swing.JPanel {
     private void buttonRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRotateActionPerformed
         // TODO EXECUTE ROTATION (send command to robot)
         System.out.println("EXECUTE ROTATION OF "+fieldRotate.getText()+"º");
+        // Example of a command
+        robot.send("ROTATE:"+String.valueOf(fieldRotate.getText()), true);
     }//GEN-LAST:event_buttonRotateActionPerformed
 
     private void buttonForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForwardActionPerformed
         // TODO EXECUTE FORWARD (send command to robot)
         System.out.println("EXECUTE FORWARD OF "+fieldRotate.getText()+"dm");
+        // Example of a command
+        robot.send("FORWARD:"+String.valueOf(fieldForward.getText()), true);
     }//GEN-LAST:event_buttonForwardActionPerformed
 
     private void fieldRobotIPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldRobotIPFocusLost
@@ -462,26 +498,51 @@ public class PanelConfig extends javax.swing.JPanel {
         if(ip.isEmpty())
             return;
         String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
-        buttonConnect.setEnabled(ip.matches(PATTERN));
+        int colon = ip.indexOf(':');
+        boolean correct;
+        String addr = ip.substring(0, colon);
+        String port = ip.substring(colon+1, ip.length());
+        int portn = 0;
+        try{
+            portn = Integer.valueOf(port);
+        }catch(NumberFormatException e){
+            portn = -1;
+        }
+        correct = colon > 6 && portn > 0 && portn < 65355 && addr.matches(PATTERN);
+        buttonConnect.setEnabled(correct);
         if(!buttonConnect.isEnabled())
-            JOptionPane.showMessageDialog(parent, "Malformed robot IP", "Invalid IP", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parent, "Malformed robot IP or wrong port number", "Invalid IP", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_fieldRobotIPFocusLost
 
     private void buttonConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConnectActionPerformed
+        // CONNECT TO THE ROBOT
         if(buttonConnect.isSelected())
         {
-            // TODO SET THE CONNECTION WITH THE ROBOT
-            System.out.println("CONNECT WITH ROBOT AT "+fieldRobotIP.getText());
-            
+            robot = new ConnectionThread(this);
+            boolean connected = robot.connect(fieldRobotIP.getText());
+            if(!connected)
+            {
+                JOptionPane.showMessageDialog(parent, "Failed to connect with the robot", "Error", JOptionPane.ERROR_MESSAGE);
+                buttonConnect.setSelected(false);
+                robot = null;
+                return;
+            }
+            robot.start();
             // When connected, change button text
             buttonConnect.setText("DISSCONNECT");
             setEnableExecute();
         }
         else
         {
-            // TODO DISCONNECT THE ROBOT (CLOSE CONNECTION)
-            System.out.println("DISSCONNECT ROBOT AT "+fieldRobotIP.getText());
-            
+            // DISCONNECT THE ROBOT (CLOSE CONNECTION)
+            if(robot != null)
+            {
+                robot.endConnection();
+                try {
+                    robot.join();
+                } catch (InterruptedException ex) { }
+                robot = null;
+            }
             // When dissconnected, change button text
             buttonConnect.setText("CONNECT");
             setEnableExecute();
@@ -492,12 +553,11 @@ public class PanelConfig extends javax.swing.JPanel {
         // TODO EXECUTE THE ROUTE
         ArrayList<Node> route = pathplanner.get_path();
         
-        // TODO REMOVE WHEN REAL SYSTEM IMPLEMENTED
-        // THIS IS AN EXAMPLE
+        // TODO IMPLEMENT REAL FUNCTIONALITY
+        // Example of sending route to the robot
         for(int i=0; i<route.size(); i++)
         {
-            System.out.println(route.get(i).toString());
-            parent.lienzo.updateRobotPosition(route.get(i).getX(), route.get(i).getY());    
+            robot.send("NODE:"+String.valueOf(route.get(i).getX())+","+route.get(i).getY(), true);
             try {
                 Thread.sleep(2000);
             }catch(InterruptedException ex) {
@@ -559,7 +619,8 @@ public class PanelConfig extends javax.swing.JPanel {
     private javax.swing.JLabel labelStart1;
     // End of variables declaration//GEN-END:variables
     private Visor parent;
-    SearchMethod pathplanner;
+    protected SearchMethod pathplanner;
     private Map map;
+    private ConnectionThread robot;
     
 }

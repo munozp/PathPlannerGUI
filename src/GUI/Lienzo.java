@@ -10,8 +10,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
+
 /**
- *
+ * Paint the map, route and robot position
  * @author Pablo Muñoz
  */
 public class Lienzo extends javax.swing.JPanel

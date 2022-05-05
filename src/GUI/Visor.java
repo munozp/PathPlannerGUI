@@ -6,7 +6,7 @@ import javax.swing.JSlider;
 
 
 /**
- *
+ * Main GUI component and entry function
  * @author Pablo Muñoz
  */
 public class Visor extends javax.swing.JLayeredPane {
@@ -25,7 +25,6 @@ public class Visor extends javax.swing.JLayeredPane {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Visor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {           
             javax.swing.JFrame frame = new javax.swing.JFrame("PathPlanner");
@@ -76,7 +75,9 @@ public class Visor extends javax.swing.JLayeredPane {
         paneCharts.add(searchConfig);
     }
         
-    /** Change the panel size and updates the map size/scroll. */
+    /** 
+     * Change the panel size and updates the map size/scroll. 
+     */
     public boolean setSize(Object[] size)
     {
         if(size.length < 2)
@@ -108,12 +109,41 @@ public class Visor extends javax.swing.JLayeredPane {
     
     /**
      * Set the label with the position of the mouse
-     * @param text 
+     * @param text text to display
      */
     public void setPositionText(String text)
     {
         labelPos.setText(text);
-    }   
+    }
+    
+    /**
+     * General update of the interface
+     */
+    public void refreshInterface()
+    {
+        if(lienzo == null)
+            return;
+        lienzo.changeScale(sliderZoom.getValue());
+        lienzo.repaint();
+        if(paneCharts.getComponentCount() <= 0)
+            return;
+        int HC = (splitPanel.getHeight()-HS) / 3;
+        java.awt.Component c = paneCharts.getComponent(0);
+        c.setBounds(1, 0, paneCharts.getWidth()-1, HS);
+        for(int i=1; i<paneCharts.getComponentCount(); i++)
+        {
+            c = paneCharts.getComponent(i);
+            c.setBounds(1, HS+HC*(i-1), paneCharts.getWidth()-1, HC);
+        }
+    }
+    
+    /**
+     * Save the current view into a png image
+     * @param filename output image file name
+     */    
+    public void savePng(String filename) {
+        lienzo.savePng(filename, true);
+    }
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -268,36 +298,6 @@ public class Visor extends javax.swing.JLayeredPane {
         refreshInterface();
     }//GEN-LAST:event_splitPanelPropertyChange
    
-    /**
-     * General update of the interface
-     */
-    public void refreshInterface()
-    {
-        if(lienzo == null)
-            return;
-        lienzo.changeScale(sliderZoom.getValue());
-        lienzo.repaint();
-        if(paneCharts.getComponentCount() <= 0)
-            return;
-        int HC = (splitPanel.getHeight()-HS) / 3;
-        java.awt.Component c = paneCharts.getComponent(0);
-        c.setBounds(1, 0, paneCharts.getWidth()-1, HS);
-        for(int i=1; i<paneCharts.getComponentCount(); i++)
-        {
-            c = paneCharts.getComponent(i);
-            c.setBounds(1, HS+HC*(i-1), paneCharts.getWidth()-1, HC);
-        }
-    }
-    
-    /**
-     * Save the current view into a png image
-     * @param filename output image file name
-     */    
-    public void savePng(String filename) {
-        System.out.println("Generating png...");
-        lienzo.savePng(filename, true);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSave;
     private javax.swing.JLabel labelPos;
