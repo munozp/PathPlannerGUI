@@ -9,6 +9,31 @@ import javax.swing.JButton;
 
 
 /**
+ * How to change the map. 
+ * @warning Do it after initialization!
+ * 
+ * Generate a new map with random values for Z and transversal costs. 
+ * Map constructor interface
+ *   ncols number of columns of the DEM.
+ *   nrows number of rows of the DEM.
+ *   maxz maximum Z value for nodes. 0 for plain terrain.
+ *   maxc maximum traversal cost. 0 for zero uniform cost terrain.
+ *   dmode mode for transversal cost grid. cornernode mode is used for D* and similar ones.
+ *   lin altitude interpolation method of the terrain. True for lineal, false for quadratic.
+   map = new Map(30, 20, 0, 1, false, true);
+ * Change cost of a cell
+   map.cost[1][1] = Map.MAX_COST;
+ * Change altitude of a node. Greater or equal to 0. If Z < 0, then is an obstacle.
+   map.get_node(1, 1).setZ(5);
+ * After map generation
+   parent.lienzo.changeMap(map);
+ * Use Lienzo.COST to visualize costmap or Lienzo.ALTITUDE for DEM.
+   parent.lienzo.visu = Lienzo.COSTS;
+   parent.lienzo.repaint();
+ */
+
+
+/**
  *
  * @author Pablo Muñoz
  */
@@ -43,7 +68,7 @@ public class PanelConfig extends javax.swing.JPanel {
     public void handleReceivedData(String message) {
         if(message == null || message.isEmpty())
             return;
-        // TODO PARSE MESSAGE AND PERFORM OPERATIONS
+        // TODO PARSE MESSAGE AND PERFORM OPERATIONS 
         System.out.println(message);
         // Example of updating robot position with a message "POS,x,y" 
         try{
@@ -429,6 +454,19 @@ public class PanelConfig extends javax.swing.JPanel {
         }
         commitFloatField(fieldSlope);
         float maxslope = Float.parseFloat(fieldSlope.getText());
+        // TODO Modify params to configure search:
+        // Last three params:
+        /** Heuristics definitions. 
+         * H_EUCLIDEAN  
+         * H_EUCLIDEAN_Z
+         * H_MANHATTAN
+         * H_OCTILE
+         * H_OCTILE_Z
+         * H_ALPHA
+         * H_ALPHA2
+        */
+        // withz true for use Z values.
+        // withc true for use transversal costs.
         pathplanner = new Dana(map, map.get_node(xs, ys), map.get_node(xg, yg), Heuristics.H_EUCLIDEAN_Z, true, true);
         map.ZM = maxslope;
         startSearch(pathplanner);

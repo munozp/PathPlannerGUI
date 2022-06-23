@@ -30,33 +30,13 @@ public class Lienzo extends javax.swing.JPanel
         this.setBackground(Color.WHITE);
         if(zoom > 0)
             scale = zoom;
-        cols = dem.get_cols();
-        rows = dem.get_rows();
-        if(dem.get_isCornernode())
-        {
-            cols--; rows--;
-        }
-        cornernode(dem.get_isCornernode());
-        map = dem;
+        changeMap(dem);       
         path = route;
         visu = 0;
         parent = par;
         robotXposition = -1;
         robotYposition = -1;
-        robotOrientation = 0;
-        dalt = map.max_alt()-map.min_alt();
-        if(dalt == 0) dalt = 1;
-        
-        if(map.get_rows() > map.get_cols())
-            scalemeter=map.get_cols()/20;
-        else
-            scalemeter=map.get_rows()/20;
-        scalemeter = (int)((float)Math.round(scalemeter/RES_SCALE)*RES_SCALE / map.get_scale());
-        if(scalemeter > MAX_SCALE)
-            scalemeter = MAX_SCALE;
-        else if(scalemeter < MIN_SCALE)
-            scalemeter = MIN_SCALE;
-        
+        robotOrientation = 0;        
         if(parent != null)
         {
             addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -81,6 +61,34 @@ public class Lienzo extends javax.swing.JPanel
             });
         }
     }
+    
+    /** 
+    * Set a new map
+    * @param dem a non-null Map
+    */
+    public final void changeMap(Map dem) {
+        if(dem == null)
+            return;
+        map = dem; 
+        cols = dem.get_cols();
+        rows = dem.get_rows();
+        if(dem.get_isCornernode())
+        {
+            cols--; rows--;
+        }
+        cornernode(dem.get_isCornernode());
+        dalt = map.max_alt()-map.min_alt();
+        if(dalt == 0) dalt = 1;
+        if(map.get_rows() > map.get_cols())
+            scalemeter=map.get_cols()/20;
+        else
+            scalemeter=map.get_rows()/20;
+        scalemeter = (int)((float)Math.round(scalemeter/RES_SCALE)*RES_SCALE / map.get_scale());
+        if(scalemeter > MAX_SCALE)
+            scalemeter = MAX_SCALE;
+        else if(scalemeter < MIN_SCALE)
+            scalemeter = MIN_SCALE;
+    }         
      
     /**
      * Set the scale for the visualization
@@ -344,8 +352,8 @@ public class Lienzo extends javax.swing.JPanel
            int[] vy = new int[]{ry+(int)(-tx1*sin+ty1*cos), ry+(int)(-tx2*sin+ty2*cos), ry+(int)(-tx3*sin+ty3*cos) };           
            g.fillPolygon(vx, vy, 3);
        }
-   }
-
+   } 
+   
    /**
     * Set the visualization between corner and center node representation
     * @param corner true for corner-node 
@@ -385,7 +393,7 @@ public class Lienzo extends javax.swing.JPanel
    private int fonts = 15;
    private int desp = 0;
    private boolean legend = true;
-   private int visu = ALTITUDE;
+   protected int visu = ALTITUDE;
    float dalt;
    public Map map;
    private ArrayList path;
@@ -401,8 +409,8 @@ public class Lienzo extends javax.swing.JPanel
    private static final int MIN_SCALE = 1;
    private static final int MAX_SCALE = 500;
    private static final int RES_SCALE = 50;
-   private static final int ALTITUDE = 0;
-   private static final int COSTS = 1;
-   private static final int EXPANDED = 2;
-   private static final int SLOPE = 3;
+   protected static final int ALTITUDE = 0;
+   protected static final int COSTS = 1;
+   protected static final int EXPANDED = 2;
+   protected static final int SLOPE = 3;
 }
