@@ -66,6 +66,9 @@ public:
     /** @return Return the socket descriptor of the server. */
     int getSocket();
 
+    /** Number of connected clients. */
+    int numClients;
+
 private:
     /** Allows the connection of a new client.
      @return True if the connection is accepted, false otherwise.
@@ -80,8 +83,6 @@ private:
     int socketServer;
     /** Set of client socket descriptors. */
     int clients[MAX_CLIENTS];
-    /** Number of connected clients. */
-    int numClients;
     /** Last client that has send data. */
     int lastClient;
     /* Data for select(). */

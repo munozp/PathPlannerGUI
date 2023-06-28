@@ -55,8 +55,23 @@ int main(int argc, char** argv)
     char message[M_LENGTH];
     int read = 1;
     int x,y;
+    int clients=0;	
     while(true)
     {
+        // Send example map when a new client is connected
+        if(clients!=server.numClients)
+        {
+            int ROWS=200;
+            server.send((char*)"MAP,200,231");
+            for(int i=0; i<ROWS; i++)
+            {
+                sprintf(message,"ROW,%d,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 9 1 1 1 1 1 1 1 1 1 1 1 1 1 9 9 9 9 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 9 1 1 9 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 9 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",i);
+                server.send(message);
+            }
+            server.send((char*)"ENDMAP");
+            clients=server.numClients;
+        }
+	// Receive	
         read = server.receive(message);
         if(read > 1)
         {

@@ -29,7 +29,7 @@ public class ConnectionThread extends Thread {
     /** Close the connection */
     private boolean endConnection = false;
     /** Message size in bytes. */
-    private static final int MESSAGE_SIZE = 256;
+    private static final int MESSAGE_SIZE = 800;
     /** Object that handle the received data */
     private Object onReadObject;
     /** Method invoked when received data */

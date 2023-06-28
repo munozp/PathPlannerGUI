@@ -70,13 +70,40 @@ public class PanelConfig extends javax.swing.JPanel {
             return;
         // TODO PARSE MESSAGE AND PERFORM OPERATIONS 
         System.out.println(message);
-        // Example of updating robot position with a message "POS,x,y" 
+        // Example of updating robot position with a message "POS,x,y"
+        // Receiving a map after MAP,ROWS,COLS
+        // Each row is received as ROW ROW# c c ...
+        // Map reception end when received ENDMAP
         try{
             java.util.StringTokenizer strtok = new java.util.StringTokenizer(message, ",");
-            strtok.nextToken();
-            int x = Integer.parseInt(strtok.nextToken());
-            int y = Integer.parseInt(strtok.nextToken());
-            updateRobotPosition(x,y);
+            String orden = strtok.nextToken();
+            if(orden.startsWith("POS"))
+            {
+                int x = Integer.parseInt(strtok.nextToken());
+                int y = Integer.parseInt(strtok.nextToken());
+                updateRobotPosition(x,y);
+            }
+            else if(orden.startsWith("MAP"))
+            {
+                int rows = Integer.parseInt(strtok.nextToken());
+                int cols = Integer.parseInt(strtok.nextToken());
+                map = new Map(cols, rows, 0, 8, false, true);
+                System.out.println(map.toString());
+            }
+            else if(orden.startsWith("ROW"))
+            {
+                int row = Integer.parseInt(strtok.nextToken());
+                java.util.StringTokenizer strtokrow = new java.util.StringTokenizer(strtok.nextToken(), " ");
+                for(int col=0; col<map.get_cols(); col++)
+                    map.cost[col][row] = Integer.parseInt(strtokrow.nextToken());
+            }
+            else if(orden.startsWith("ENDMAP"))
+            {
+                map.expand_costmap((short)1);
+                parent.lienzo.changeMap(map);
+                parent.lienzo.visu = Lienzo.COSTS;
+                parent.lienzo.repaint();
+            }
         }catch(Exception e){
             System.out.println(e.toString());
         }
@@ -129,9 +156,16 @@ public class PanelConfig extends javax.swing.JPanel {
         map.restart_map(false);
         algorithm.search();
         if(algorithm.get_path() != null)
-            parent.updateRoute(map, algorithm.get_path(), algorithm.toString()+"\n"+algorithm.path_info());       
+        {
+            parent.updateRoute(map, algorithm.get_path(), algorithm.toString()+"\n"+algorithm.path_info());
+            parent.setPositionText("Path found");
+        }
+        else
+        {
+            parent.setPositionText("No path found");
+        }
     }
-    
+        
     /**
      * Compute the maximum slope allowed from the text fields
      */
@@ -467,7 +501,7 @@ public class PanelConfig extends javax.swing.JPanel {
         */
         // withz true for use Z values.
         // withc true for use transversal costs.
-        pathplanner = new Dana(map, map.get_node(xs, ys), map.get_node(xg, yg), Heuristics.H_EUCLIDEAN_Z, true, true);
+        pathplanner = new Dana(map, map.get_node(xs, ys), map.get_node(xg, yg), Heuristics.H_EUCLIDEAN_Z, false, true);
         map.ZM = maxslope;
         startSearch(pathplanner);
         setEnableExecute();
